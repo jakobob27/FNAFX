@@ -20,9 +20,12 @@ public class GameOverController {
 
     @FXML AnchorPane anchor;
 
+
     @FXML
     void enteredText(ActionEvent event) {
         anchor.getChildren().remove(box);
+        String name = textInput.getText();
+        //bruk name for et metodekall for å legge til i highscorelist
     }
 
 }
