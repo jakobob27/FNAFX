@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
 
 public class MainSceneController implements MapListener, JumpscareListener{
 
-    private int level=1;
+    private static int level=1;
 
     @FXML
     private GridPane grid;
@@ -44,6 +44,10 @@ public class MainSceneController implements MapListener, JumpscareListener{
 
     @FXML
     private Text levelCounter;
+
+    @FXML
+    private Text highscoreText;
+    
 
     private Animatronic animatronic1;
     private Animatronic animatronic2;
@@ -79,7 +83,10 @@ public class MainSceneController implements MapListener, JumpscareListener{
         animatronic5 = new Animatronic(map, player, quandale);
         
         map.addAnimatronic(animatronic1);
-
+        
+        HighscoreManagement.updateScore();
+        highscoreText.setText("Highscore: "+ HighscoreManagement.getHighscore());
+    
         
 
         for (Animatronic animatronic:map.getAnimatronics()) {
@@ -262,6 +269,10 @@ public class MainSceneController implements MapListener, JumpscareListener{
         else if(animatronic.equals(animatronic5)) {
             quandale();
         }
+    }
+
+    public static int getLevel() {
+        return level;
     }
 
 

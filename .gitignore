@@ -23,6 +23,7 @@
 hs_err_pid*
 
 *.txt
+*.dat
 
 target/
 pom.xml.tag
