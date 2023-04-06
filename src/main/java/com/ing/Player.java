@@ -23,7 +23,9 @@ public class Player extends GameObject implements MapListener {
                 dead = true;
                 System.out.println("YOU ARE DEAD!");
                 for (Animatronic anima : map.getAnimatronics()) {
-                    anima.stopMoving();
+                    if (anima.getIsMoving()) {
+                        anima.stopMoving();
+                    }
                 }
 
                 for (JumpscareListener l : listeners) {

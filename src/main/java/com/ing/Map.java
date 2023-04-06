@@ -1,6 +1,5 @@
 package com.ing;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,30 +12,29 @@ public class Map {
     private Player player;
     private ArrayList<Animatronic> animatronics = new ArrayList<>();
 
-    public Map (int x, int y){
-        if (x<1|| y<1) {
+    public Map(int x, int y) {
+        if (x < 1 || y < 1) {
             throw new IllegalArgumentException();
         }
-        for (int i=0; i<x; i++) {
+        for (int i = 0; i < x; i++) {
             grid.add(new ArrayList<GameObject>());
-            for (int j=0; j<y; j++) {
+            for (int j = 0; j < y; j++) {
                 grid.get(i).add(null);
             }
         }
-        this.maxSizex=x;
-        this.maxSizey=y;
+        this.maxSizex = x;
+        this.maxSizey = y;
     }
 
     @Override
     public String toString() {
-        return "Rader: "+ grid.size() + " Kolonner: " + grid.get(0).size();
+        return "Rader: " + grid.size() + " Kolonner: " + grid.get(0).size();
     }
 
-    public boolean checkPosition (int x, int y) {
-        if (x>=0 && y>=0 && x<maxSizex && y<maxSizey) {
+    public boolean checkPosition(int x, int y) {
+        if (x >= 0 && y >= 0 && x < maxSizex && y < maxSizey) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -46,7 +44,7 @@ public class Map {
     }
 
     public void moveGameObject(int xprev, int yprev, int xpos, int ypos) {
-        if(!checkPosition(xpos, ypos)) {
+        if (!checkPosition(xpos, ypos)) {
             throw new IllegalArgumentException();
         }
         GameObject gameObject = grid.get(xprev).get(yprev);
@@ -59,10 +57,10 @@ public class Map {
         }
     }
 
-    public void addAnimatronic (Animatronic animatronic) {
-        for (int i = grid.size()-1; i>0; i--) {
-            for (int j = grid.get(i).size()-1; j>0; j--) {
-                if(grid.get(i).get(j)==null) {
+    public void addAnimatronic(Animatronic animatronic) {
+        for (int i = grid.size() - 1; i > 0; i--) {
+            for (int j = grid.get(i).size() - 1; j > 0; j--) {
+                if (grid.get(i).get(j) == null) {
                     grid.get(i).set(j, animatronic);
                     animatronic.setPositionx(i);
                     animatronic.setPositiony(j);
@@ -71,35 +69,38 @@ public class Map {
                 }
             }
         }
-        
-         }
+
+    }
 
     public boolean animatronicCollision(int x, int y) {
         if (grid.get(x).get(y) instanceof Animatronic) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
 
+    public int getMapSizeX() {
+        return maxSizex;
+    }
+
+    public int getMapSizeY() {
+        return maxSizey;
+    }
 
     public ArrayList<Animatronic> getAnimatronics() {
         return animatronics;
     }
 
     public void addPlayer(Player player) {
-        if(!checkPosition(player.getPositionx(), player.getPositiony()) || this.player!=null) {
+        if (!checkPosition(player.getPositionx(), player.getPositiony()) || this.player != null) {
             throw new IllegalArgumentException();
         }
         grid.get(player.getPositionx()).set(player.getPositiony(), player);
-        this.player=player;
+        this.player = player;
         listeners.add(player);
-        
-        
+
     }
-
-
 
     public void addListener(MapListener listener) {
         listeners.add(listener);
@@ -112,20 +113,18 @@ public class Map {
     public void updateListeners(GameObject gameObject) {
         for (MapListener l : listeners) {
             l.update(gameObject);
-        } 
+        }
     }
-
 
     public void gameOver() {
         try {
             Thread.sleep(8000);
-        try {
-            App.setRoot("GameOver");
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        } }
-        catch (InterruptedException f) {
+            try {
+                App.setRoot("GameOver");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (InterruptedException f) {
             f.printStackTrace();
         }
     }
