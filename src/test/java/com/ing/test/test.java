@@ -1,3 +1,5 @@
+package com.ing.test;
+
 import org.junit.jupiter.api.Test;
 
 import com.ing.Animatronic;
