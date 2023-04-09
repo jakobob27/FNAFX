@@ -39,7 +39,7 @@
             <Font size="52.0" />
          </font>
       </Label>
-      <TableView fx:id="highscoreTable" layoutX="289.0" layoutY="238.0" prefHeight="324.0" prefWidth="223.0" visible="false">
+      <TableView fx:id="highscoreTable" layoutX="179.0" layoutY="201.0" prefHeight="270.0" prefWidth="442.0" visible="false">
         <columns>
           <TableColumn fx:id="leaderboardName" editable="false" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="leaderboardScore" editable="false" prefWidth="75.0" text="Score" />
