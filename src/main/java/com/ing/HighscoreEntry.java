@@ -16,6 +16,12 @@ public class HighscoreEntry {
         this.date = dtf.format(now);
     }
 
+    public HighscoreEntry(int score, String name, String date) {
+        this.score = score;
+        this.name = name;
+        this.date = date;
+    }
+
     public int getScore() {
         return score;
     }

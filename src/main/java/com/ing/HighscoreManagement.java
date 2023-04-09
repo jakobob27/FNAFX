@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class HighscoreManagement {
     private static ArrayList<String> scores = new ArrayList<String>();
@@ -34,6 +38,10 @@ public class HighscoreManagement {
             scores.add(h.toString());
             Collections.sort(scores);
             Collections.reverse(scores);
+            if (scores.size() == 11){
+                scores.remove(10);
+        
+            }
             System.out.println(scores);
         
 
@@ -88,6 +96,7 @@ public class HighscoreManagement {
 
             Collections.sort(scores);
             Collections.reverse(scores);
+            
             System.out.println(scores);
     
         }
@@ -106,8 +115,14 @@ public class HighscoreManagement {
         }
     }
 
-    public static ArrayList<String> getScores() {
-        return scores;
+    public static ArrayList<String> getScoreList() {
+        ArrayList<String> scorevalues = new ArrayList<>();
+        for (String string : scores) {
+            String[] s = string.split(",");
+            scorevalues.add(s[0]); 
+        }
+        System.out.println(scorevalues);
+        return scorevalues;
     }
 
     public static int getHighscore() {
@@ -118,4 +133,17 @@ public class HighscoreManagement {
         String t = s.substring(0,1);
         return Integer.parseInt(t);
     }
+    public static ObservableList<HighscoreEntry> getHighscoreList(){
+        List<HighscoreEntry> lst = new ArrayList<>();
+        for (String string : scores) {
+            String[] s = string.split(",");
+            HighscoreEntry score = new HighscoreEntry(Integer.parseInt(s[0]), s[1], s[2]);
+            lst.add(score);
+        }
+        
+        ObservableList<HighscoreEntry> d = FXCollections.observableList(lst);
+        return d;
+    }
 }
+
+    
