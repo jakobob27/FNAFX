@@ -115,15 +115,6 @@ public class HighscoreManagement {
         }
     }
 
-    public static ArrayList<String> getScoreList() {
-        ArrayList<String> scorevalues = new ArrayList<>();
-        for (String string : scores) {
-            String[] s = string.split(",");
-            scorevalues.add(s[0]); 
-        }
-        System.out.println(scorevalues);
-        return scorevalues;
-    }
 
     public static int getHighscore() {
         if (scores.size() == 0){
