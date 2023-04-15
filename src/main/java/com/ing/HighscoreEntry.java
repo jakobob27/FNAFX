@@ -7,7 +7,7 @@ public class HighscoreEntry {
     private int score;
     private String name;
     private String date;
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public HighscoreEntry(int score, String name) {
         LocalDateTime now = LocalDateTime.now();

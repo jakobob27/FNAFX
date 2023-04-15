@@ -22,11 +22,14 @@ public class GameOverController {
     @FXML
     private TextField textInput;
 
-    @FXML AnchorPane anchor;
+    @FXML 
+    private AnchorPane anchor;
 
-    @FXML Label highscoreLabel;
+    @FXML 
+    private Label highscoreLabel;
 
-    @FXML TableView<HighscoreEntry> highscoreTable;
+    @FXML 
+    private TableView<HighscoreEntry> highscoreTable;
 
     @FXML 
     private TableColumn<HighscoreEntry, String> leaderboardName;
@@ -37,12 +40,11 @@ public class GameOverController {
     @FXML 
     private TableColumn<HighscoreEntry, String> leaderboardDate;
 
-    @FXML Label errorText;
+    @FXML 
+    private Label errorText;
 
     @FXML
-
-
-    void enteredText(ActionEvent event) {
+    private void enteredText(ActionEvent event) {
         //anchor.getChildren().remove(box); 
         String name = textInput.getText();
         if (name.contains(",") || name.equals(" ")){
