@@ -1,4 +1,5 @@
 package com.ing.test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Field;
@@ -10,16 +11,13 @@ import org.junit.jupiter.api.Test;
 import com.ing.HighscoreEntry;
 import com.ing.HighscoreManagement;
 
-
 public class testHighscore {
     HighscoreEntry h1;
     ArrayList<String> scores;
-    
-    
 
-
+    @SuppressWarnings("unchecked")
     @BeforeEach
-    public void setup() throws NoSuchFieldException, IllegalAccessException{
+    public void setup() throws NoSuchFieldException, IllegalAccessException {
         Field scoresField = HighscoreManagement.class.getDeclaredField("scores");
         scoresField.setAccessible(true);
         scores = (ArrayList<String>) scoresField.get(null);
@@ -31,8 +29,6 @@ public class testHighscore {
         scores.add(h3.toString());
     }
 
-
-
     @Test
     public void testgetHighscore() {
         assertEquals(3, HighscoreManagement.getHighscore());
@@ -40,7 +36,7 @@ public class testHighscore {
 
     @Test
     public void testgetHighscoreList() {
-        assertEquals(scores.get(0).toString(),HighscoreManagement.getHighscoreList().get(0).toString());
+        assertEquals(scores.get(0).toString(), HighscoreManagement.getHighscoreList().get(0).toString());
     }
 
 }
